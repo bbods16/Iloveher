@@ -95,7 +95,6 @@
 </head>
 <body>
   <div class="container" id="container">
-    <div class="container">
     <div id="welcome">
       <h1>Hey Faith... ✨</h1>
       <p>I have something important to ask you.</p>
@@ -112,7 +111,6 @@
       <button class="primary-button" id="toPage4">One more thing...</button>
     </div>
 
-
     <div id="page4" style="display:none;">
       <h2>You light up the space around you without even trying. ❤️</h2>
       <button class="primary-button" id="toPage5">Continue</button>
@@ -124,7 +122,7 @@
     </div>
 
     <div id="page6" style="display:none;">
-      <h2>Ad most nights I cant sleep with the thought of you being unhappy❤️</h2>
+      <h2>And most nights I can't sleep with the thought of you being unhappy ❤️</h2>
       <button class="primary-button" id="toQuestion">That's why I want to ask...</button>
     </div>
 
@@ -142,10 +140,9 @@
       <p>Thank you for being in my life ❤️</p>
       <button class="primary-button" id="finalButton">Click here to continue ❤️</button>
     </div>
-
   </div>
 
-  <audio id="bgMusic" src="music.mp3" preload="auto"></audio>
+  <audio id="bgMusic" src="Clocks.mp3" preload="auto"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
@@ -166,9 +163,32 @@
       }, 500);
     }
 
+    function showSection(id) {
+      document.querySelectorAll('.container > div').forEach(div => div.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       createFloatingEmojis();
+      showSection('welcome');
+
+      document.getElementById('continueButton').onclick = () => showSection('page1');
+      document.getElementById('toPage2').onclick = () => showSection('page2');
+      document.getElementById('toPage4').onclick = () => showSection('page4');
+      document.getElementById('toPage5').onclick = () => showSection('page5');
+      document.getElementById('toPage6').onclick = () => showSection('page6');
+      document.getElementById('toQuestion').onclick = () => showSection('question');
+
+      document.getElementById('yesButton').onclick = celebrate;
+      document.getElementById('absolutelyButton').onclick = celebrate;
+      document.getElementById('finalButton').onclick = () => alert("Can't wait to see you! ❤️");
     });
+
+    function celebrate() {
+      confetti({ particleCount: 300, spread: 70, origin: { y: 0.6 } });
+      showSection('message');
+      document.getElementById('bgMusic').play();
+    }
   </script>
 </body>
 </html>
