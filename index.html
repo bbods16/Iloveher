@@ -128,25 +128,37 @@
     </div>
 
     <div id="page1" style="display:none;">
-      <h2>You want to know why I bought those Flowers, or tried to get you to be with Dylan at the beginning of the Year ✨</h2>
+      <h2>The way you light up when you’re happy—it’s not just your smile, it’s your whole energy. ✨</h2>
       <button class="primary-button" id="toPage2">Continue</button>
     </div>
 
     <div id="page2" style="display:none;">
-      <h2>Because I genuinely care about you, I care about your smile ❤️</h2>
-      <button class="primary-button" id="page3">One more thing...</button>
+      <h2>You bring this quiet, beautiful kind of light that’s impossible not to notice. ❤️</h2>
+      <button class="primary-button" id="toPage3">One more thing...</button>
     </div>
+
     <div id="page3" style="display:none;">
-      <h2>When your mouth smiles, your nose also smiles, your cheeks smile, and even your forehead smiles its beautiful ❤️</h2>
-      <button class="primary-button" id="page4">One more thing...</button>
+      <h2>When your mouth smiles, your nose smiles, your cheeks smile, and even your forehead smiles. ❤️</h2>
+      <button class="primary-button" id="toPage4">Continue</button>
     </div>
+
     <div id="page4" style="display:none;">
-      <h2>Honestly, you’re beautiful in a way that feels really natural. It’s like... you just light up the space around you without even trying. ❤️</h2>
+      <h2>You light up the space around you without even trying. ❤️</h2>
+      <button class="primary-button" id="toPage5">Continue</button>
+    </div>
+
+    <div id="page5" style="display:none;">
+      <h2>When you come to practice, I’m genuinely starstruck by how beautiful you are. ❤️</h2>
+      <button class="primary-button" id="toPage6">Continue</button>
+    </div>
+
+    <div id="page6" style="display:none;">
+      <h2>Most nights I just think about seeing you happy, and how I can help make that happen. ❤️</h2>
       <button class="primary-button" id="toQuestion">That's why I want to ask...</button>
     </div>
 
     <div id="question" style="display:none;">
-      <h2>I’ve really enjoyed spending time with you lately. I'd love to take you out sometime—just the two of us. Maybe we could go out and get you even more flowers, if you're up for it. No pressure at all. :) 💖</h2>
+      <h2>I’ve really enjoyed spending time with you lately. I'd love to take you out sometime—just the two of us. 💖</h2>
       <div class="buttons">
         <button class="answer" id="yesButton">Yes!</button>
         <button class="answer" id="absolutelyButton">Absolutely!</button>
@@ -165,55 +177,36 @@
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    const welcomeSection = document.getElementById('welcome');
-    const page1 = document.getElementById('page1');
-    const page2 = document.getElementById('page2');
-    const questionSection = document.getElementById('question');
-    const messageSection = document.getElementById('message');
-    const continueButton = document.getElementById('continueButton');
-    const toPage2 = document.getElementById('toPage2');
-    const toQuestion = document.getElementById('toQuestion');
+    const sections = [
+      'welcome', 'page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'question', 'message'
+    ];
+
+    function showSection(currentId, nextId) {
+      document.getElementById(currentId).style.display = 'none';
+      const next = document.getElementById(nextId);
+      next.style.display = 'flex';
+      next.style.flexDirection = 'column';
+      next.style.justifyContent = 'center';
+      next.style.alignItems = 'center';
+    }
+
+    document.getElementById('continueButton').onclick = () => showSection('welcome', 'page1');
+    document.getElementById('toPage2').onclick = () => showSection('page1', 'page2');
+    document.getElementById('toPage3').onclick = () => showSection('page2', 'page3');
+    document.getElementById('toPage4').onclick = () => showSection('page3', 'page4');
+    document.getElementById('toPage5').onclick = () => showSection('page4', 'page5');
+    document.getElementById('toPage6').onclick = () => showSection('page5', 'page6');
+    document.getElementById('toQuestion').onclick = () => showSection('page6', 'question');
+
     const yesButton = document.getElementById('yesButton');
     const absolutelyButton = document.getElementById('absolutelyButton');
     const finalButton = document.getElementById('finalButton');
     const bgMusic = document.getElementById('bgMusic');
 
-    continueButton.addEventListener('click', () => {
-      welcomeSection.style.display = 'none';
-      page1.style.display = 'flex';
-      page1.style.flexDirection = 'column';
-      page1.style.justifyContent = 'center';
-      page1.style.alignItems = 'center';
-    });
-
-    toPage2.addEventListener('click', () => {
-      page1.style.display = 'none';
-      page2.style.display = 'flex';
-      page2.style.flexDirection = 'column';
-      page2.style.justifyContent = 'center';
-      page2.style.alignItems = 'center';
-    });
-
-    toQuestion.addEventListener('click', () => {
-      page2.style.display = 'none';
-      questionSection.style.display = 'flex';
-      questionSection.style.flexDirection = 'column';
-      questionSection.style.justifyContent = 'center';
-      questionSection.style.alignItems = 'center';
-    });
-
     function celebrate() {
-      confetti({
-        particleCount: 200,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+      confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
       createFloatingHearts();
-      questionSection.style.display = 'none';
-      messageSection.style.display = 'flex';
-      messageSection.style.flexDirection = 'column';
-      messageSection.style.justifyContent = 'center';
-      messageSection.style.alignItems = 'center';
+      showSection('question', 'message');
       bgMusic.play();
     }
 
@@ -238,4 +231,3 @@
   </script>
 </body>
 </html>
-
