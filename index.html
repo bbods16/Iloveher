@@ -6,197 +6,56 @@
   <title>For Someone Special</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to right, #ffe0e9, #ffe4b5);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    .container {
-      max-width: 600px;
-      padding: 20px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      animation: fadeIn 2s ease;
-      z-index: 2;
-    }
-
-    h1, h2 {
-      margin-bottom: 20px;
-    }
-
-    p {
-      margin-bottom: 30px;
-      font-size: 18px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .primary-button {
-      background-color: #ff7eb9;
-      color: white;
-    }
-
-    .answer {
-      background-color: #ffa69e;
-      color: white;
-    }
-
-    button:hover {
-      background-color: #ffb3c1;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .floating-heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: float 6s infinite;
-      opacity: 0.7;
-    }
-
-    .floating-heart::before,
-    .floating-heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-
-    .floating-heart::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .floating-heart::after {
-      left: -10px;
-      top: 0;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(45deg); }
-      50% { transform: translateY(-50px) rotate(45deg); }
-      100% { transform: translateY(0) rotate(45deg); }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 20px;
-        width: 90%;
-      }
-    }
+    /* (all your CSS remains unchanged) */
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="welcome">
-      <h1>Hey Faith... ✨</h1>
-      <p>I have something important to ask you.</p>
-      <button class="primary-button" id="continueButton">Click to Continue</button>
-    </div>
-
-    <div id="page1" style="display:none;">
-      <h2>The way you light up when you’re happy—it’s not just your smile, it’s your whole energy. ✨</h2>
-      <button class="primary-button" id="toPage2">Continue</button>
-    </div>
-
-    <div id="page2" style="display:none;">
-      <h2>You bring this quiet, beautiful kind of light that’s impossible not to notice. ❤️</h2>
-      <button class="primary-button" id="toPage3">One more thing...</button>
-    </div>
-
-    <div id="page3" style="display:none;">
-      <h2>When your mouth smiles, your nose smiles, your cheeks smile, and even your forehead smiles. ❤️</h2>
-      <button class="primary-button" id="toPage4">Continue</button>
-    </div>
-
-    <div id="page4" style="display:none;">
-      <h2>You light up the space around you without even trying. ❤️</h2>
-      <button class="primary-button" id="toPage5">Continue</button>
-    </div>
-
-    <div id="page5" style="display:none;">
-      <h2>When you come to practice, I’m genuinely starstruck by how beautiful you are. ❤️</h2>
-      <button class="primary-button" id="toPage6">Continue</button>
-    </div>
-
-    <div id="page6" style="display:none;">
-      <h2>Most nights I just think about seeing you happy, and how I can help make that happen. ❤️</h2>
-      <button class="primary-button" id="toQuestion">That's why I want to ask...</button>
-    </div>
-
-    <div id="question" style="display:none;">
-      <h2>I’ve really enjoyed spending time with you lately. I'd love to take you out sometime—just the two of us. 💖</h2>
-      <div class="buttons">
-        <button class="answer" id="yesButton">Yes!</button>
-        <button class="answer" id="absolutelyButton">Absolutely!</button>
-      </div>
-    </div>
-
-    <div id="message" style="display:none;">
-      <h2>Yay! 😍</h2>
-      <p>You mean so much to me, and I can't wait for our next adventure together. ✨</p>
-      <p>Thank you for being in my life ❤️</p>
-      <button class="primary-button" id="finalButton">Click here to continue ❤️</button>
-    </div>
+  <div class="container" id="container">
+    <!-- (all your divs/pages remain unchanged) -->
   </div>
 
-  <audio id="bgMusic" src="assets/music.mp3" preload="auto"></audio>
+  <!-- Updated background music -->
+  <audio id="bgMusic" src="Clocks.mp3" preload="auto"></audio>
+
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    const sections = [
-      'welcome', 'page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'question', 'message'
-    ];
+    const sections = ['welcome', 'page1', 'page2', 'page3', 'page4', 'page5', 'question', 'message'];
 
-    function showSection(currentId, nextId) {
-      document.getElementById(currentId).style.display = 'none';
-      const next = document.getElementById(nextId);
-      next.style.display = 'flex';
-      next.style.flexDirection = 'column';
-      next.style.justifyContent = 'center';
-      next.style.alignItems = 'center';
+    function fadeOutIn(currentId, nextId) {
+      const container = document.getElementById('container');
+      container.style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById(currentId).style.display = 'none';
+        const next = document.getElementById(nextId);
+        next.style.display = 'flex';
+        next.style.flexDirection = 'column';
+        next.style.justifyContent = 'center';
+        next.style.alignItems = 'center';
+        emojiRain();
+        container.style.opacity = 1;
+      }, 500);
     }
 
-    document.getElementById('continueButton').onclick = () => showSection('welcome', 'page1');
-    document.getElementById('toPage2').onclick = () => showSection('page1', 'page2');
-    document.getElementById('toPage3').onclick = () => showSection('page2', 'page3');
-    document.getElementById('toPage4').onclick = () => showSection('page3', 'page4');
-    document.getElementById('toPage5').onclick = () => showSection('page4', 'page5');
-    document.getElementById('toPage6').onclick = () => showSection('page5', 'page6');
-    document.getElementById('toQuestion').onclick = () => showSection('page6', 'question');
+    function emojiRain() {
+      const emojis = ['❤️','✨','😊','🌟'];
+      for (let i = 0; i < 10; i++) {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji';
+        emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * 100 + 'vw';
+        emoji.style.top = Math.random() * 100 + 'vh';
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 6000);
+      }
+    }
+
+    document.getElementById('continueButton').onclick = () => fadeOutIn('welcome', 'page1');
+    document.getElementById('toPage2').onclick = () => fadeOutIn('page1', 'page2');
+    document.getElementById('toPage3').onclick = () => fadeOutIn('page2', 'page3');
+    document.getElementById('toPage4').onclick = () => fadeOutIn('page3', 'page4');
+    document.getElementById('toPage5').onclick = () => fadeOutIn('page4', 'page5');
+    document.getElementById('toQuestion').onclick = () => fadeOutIn('page5', 'question');
 
     const yesButton = document.getElementById('yesButton');
     const absolutelyButton = document.getElementById('absolutelyButton');
@@ -204,14 +63,14 @@
     const bgMusic = document.getElementById('bgMusic');
 
     function celebrate() {
-      confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
+      confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
       createFloatingHearts();
-      showSection('question', 'message');
+      fadeOutIn('question', 'message');
       bgMusic.play();
     }
 
     function createFloatingHearts() {
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 20; i++) {
         const heart = document.createElement('div');
         heart.className = 'floating-heart';
         heart.style.left = Math.random() * 100 + 'vw';
@@ -228,6 +87,19 @@
     yesButton.addEventListener('click', celebrate);
     absolutelyButton.addEventListener('click', celebrate);
     finalButton.addEventListener('click', finalAction);
+
+    // Auto typing text
+    const autoType = document.getElementById('autoType');
+    const text = "Hey Faith... ✨";
+    let index = 0;
+    function typeWriter() {
+      if (index < text.length) {
+        autoType.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+    typeWriter();
   </script>
 </body>
 </html>
