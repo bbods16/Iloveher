@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Someone Special</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #ffe0e9, #ffe4b5);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #continueButton {
+      background-color: #ff7eb9;
+      color: white;
+    }
+
+    .answer {
+      background-color: #ffa69e;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #ffb3c1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="welcome">
+      <h1>Hey [Her Name]... ✨</h1>
+      <p>I have something important to ask you.</p>
+      <button id="continueButton">Click to Continue</button>
+    </div>
+
+    <div id="question" style="display:none;">
+      <h2>Will you go out with me? 💖</h2>
+      <div class="buttons">
+        <button class="answer" id="yesButton">Yes!</button>
+        <button class="answer" id="absolutelyButton">Absolutely!</button>
+      </div>
+    </div>
+
+    <div id="message" style="display:none;">
+      <h2>Yay! 😍</h2>
+      <p>You mean so much to me, and I can't wait for our next adventure together. ✨</p>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="assets/music.mp3" preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const continueButton = document.getElementById('continueButton');
+    const welcomeSection = document.getElementById('welcome');
+    const questionSection = document.getElementById('question');
+    const messageSection = document.getElementById('message');
+    const yesButton = document.getElementById('yesButton');
+    const absolutelyButton = document.getElementById('absolutelyButton');
+    const bgMusic = document.getElementById('bgMusic');
+
+    continueButton.addEventListener('click', () => {
+      welcomeSection.style.display = 'none';
+      questionSection.style.display = 'block';
+    });
+
+    function celebrate() {
+      confetti({
+        particleCount: 200,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      questionSection.style.display = 'none';
+      messageSection.style.display = 'block';
+      bgMusic.play();
+    }
+
+    yesButton.addEventListener('click', celebrate);
+    absolutelyButton.addEventListener('click', celebrate);
+  </script>
+</body>
+</html>
